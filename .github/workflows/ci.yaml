@@ -29,20 +29,14 @@ jobs:
     - name: Build application
       run: bun run build
 
-  sonarcloud:
-    needs: build-and-test
+  sonarqube:
+    name: SonarQube
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v1
-      
-    - name: Install dependencies
-      run: bun install
-      
-    - name: Run tests with coverage
-      run: bun test --coverage
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
