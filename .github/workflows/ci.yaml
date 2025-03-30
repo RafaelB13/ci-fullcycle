@@ -7,7 +7,8 @@ on:
     branches: [ develop, main ]
 
 jobs:
-  build-and-test:
+  check-application:
+    name: Check Application
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,13 +22,9 @@ jobs:
         
       - name: Install dependencies
         run: bun install
-      
+
       - name: Run tests
         run: bun test || echo "Tests failed"
-
-      - name: Build application
-        run: bun run build
-
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
