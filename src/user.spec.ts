@@ -32,4 +32,19 @@ describe('User Model', () => {
         expect(user.name).toBe('Jane Doe');
         expect(user.email).toBe('jane.doe@example.com');
     });
+
+    it('should convert user to JSON and back', () => {
+        const user = User.create(
+            data.name,
+            data.email,
+            data.password
+        );
+
+        const json = JSON.stringify(user);
+        const parsedUser = User.fromJson(JSON.parse(json));
+
+        expect(parsedUser).toBeDefined();
+        expect(parsedUser.name).toBe(data.name);
+        expect(parsedUser.email).toBe(data.email);
+    });
 });

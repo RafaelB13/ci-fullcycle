@@ -32,6 +32,17 @@ export class User {
         return new User(id, name, email, password, now, now);
     }
 
+    static update(
+        id: string,
+        name: string,
+        email: string,
+        password: string,
+        createdAt: Date
+    ): User {
+        const now = new Date();
+        return new User(id, name, email, password, createdAt, now);
+    }
+
     static fromJson(json: any): User {
         return new User(
             json.id,
