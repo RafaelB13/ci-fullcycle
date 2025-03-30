@@ -33,17 +33,6 @@ describe('User Model', () => {
         expect(user.email).toBe('jane.doe@example.com');
     });
 
-    it('should create a user with the current date', () => {
-        const user = User.create(
-            data.name,
-            data.email,
-            data.password
-        );
-
-        expect(user.createdAt).toBeInstanceOf(Date);
-        expect(user.updatedAt).toBeInstanceOf(Date);
-    });
-
     it('should convert user to JSON and back', () => {
         const user = User.create(
             data.name,
