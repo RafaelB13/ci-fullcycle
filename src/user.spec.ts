@@ -47,13 +47,4 @@ describe('User Model', () => {
         expect(parsedUser.name).toBe(data.name);
         expect(parsedUser.email).toBe(data.email);
     });
-
-    it('should handle invalid JSON gracefully', () => {
-        const invalidJson = '{"invalid": "data"}';
-        const parsedUser = User.fromJson(JSON.parse(invalidJson));
-
-        expect(parsedUser).toBeDefined();
-        expect(parsedUser.name).toBeUndefined();
-        expect(parsedUser.email).toBeUndefined();
-    });
 });

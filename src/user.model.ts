@@ -32,17 +32,6 @@ export class User {
         return new User(id, name, email, password, now, now);
     }
 
-    toJson(): any {
-        return {
-            id: this.id,
-            name: this.name,
-            email: this.email,
-            password: this.password,
-            createdAt: this.createdAt.toISOString(),
-            updatedAt: this.updatedAt.toISOString(),
-        };
-    }
-
     static fromJson(json: any): User {
         return new User(
             json.id,
