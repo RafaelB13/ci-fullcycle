@@ -31,33 +31,4 @@ export class User {
         const now = new Date();
         return new User(id, name, email, password, now, now);
     }
-
-    updateDetails(name: string, email: string): void {
-        this.name = name;
-        this.email = email;
-        this.updatedAt = new Date();
-    }
-    
-
-    toJson(): string {
-        return JSON.stringify({
-            id: this.id,
-            name: this.name,
-            email: this.email,
-            password: this.password,
-            createdAt: this.createdAt.toISOString(),
-            updatedAt: this.updatedAt.toISOString()
-        });
-    }
-
-    static fromJson(json: any): User {
-        return new User(
-            json.id,
-            json.name,
-            json.email,
-            json.password,
-            new Date(json.createdAt),
-            new Date(json.updatedAt)
-        );
-    }
 }
