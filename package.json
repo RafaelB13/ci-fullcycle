@@ -11,6 +11,7 @@
   "scripts": {
     "build": "tsc",
     "test": "bun test",
+    "test:coverage": "bun test --coverage",
     "test:watch": "jest --watchAll --detectOpenHandles --forceExit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
