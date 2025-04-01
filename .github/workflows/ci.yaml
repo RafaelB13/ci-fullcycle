@@ -26,11 +26,16 @@ jobs:
       - name: Run tests with coverage
         run: bun test --coverage
         
+      # Debug step to verify coverage files exist
+      - name: List coverage files
+        run: ls -la coverage/ || echo "No coverage directory found"
+        
       - name: Upload coverage as artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage/
+          retention-days: 1  # Explicit retention period
 
   sonarqube:
     name: SonarQube
@@ -46,6 +51,10 @@ jobs:
         with:
           name: coverage
           path: coverage/
+          
+      # Verify the downloaded files
+      - name: Verify downloaded coverage
+        run: ls -la coverage/
           
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
